@@ -6,12 +6,22 @@ export default Ember.Controller.extend({
     return this.get('model.songs.length') === 0;
   }),
 
+  songCreationStarted: false,
+
+  canCreateSong: Ember.computed('songCreationStarted', 'model.songs.length', function() {
+    return this.get('songCreationStarted') || this.get('model.songs.length');
+  }),
+
   actions: {
 
     updateRating: function (params) {
       var song = params.item,
           rating = params.rating;
       song.set('rating', rating);
+    },
+
+    enableSongCreation: function () {
+      this.set('songCreationStarted', true);
     }
   }
 
