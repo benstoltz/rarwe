@@ -5,4 +5,6 @@ export default Ember.Route.extend({
     var bands = this.modelFor('bands');
     return bands.findBy('slug', params.slug);
   }
+
+
 });
